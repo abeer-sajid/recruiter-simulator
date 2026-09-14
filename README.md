@@ -164,12 +164,6 @@ Here's the nice part. If I paste a new project into `projects.ts`:
 …and the game checks that you can still walk to everything in the room. I never
 edit a map by hand.
 
-If I forget to fill something in, the browser console tells me exactly which
-file, which entry, and what to add. It never breaks for a visitor.
-
-**[📖 CONTENT-GUIDE.md](./CONTENT-GUIDE.md)** is the full walkthrough — how to
-add a project, a job, a skill, a character, a joke, or change all the colours.
-It's written in plain steps with copy-paste examples.
 
 ---
 
