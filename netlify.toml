@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# The game uses hash routing, and /resume/ is a real prerendered directory,
+# so no rewrites are needed. This block only helps if you later add real paths.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false

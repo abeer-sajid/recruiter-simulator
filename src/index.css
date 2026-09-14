@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    /* Palette custom properties are injected at runtime from
+       src/data/palette.ts. These fallbacks keep the first paint correct. */
+    --c-void: #0d0b14;
+    --c-paper: #efe6e0;
+    --c-amber0: #ffd9a0;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--c-void);
+    color: var(--c-paper);
+    font-family: 'VT323', ui-monospace, monospace;
+    -webkit-font-smoothing: none;
+    overscroll-behavior: none;
+  }
+
+  canvas,
+  img {
+    image-rendering: pixelated;
+  }
+
+  /* Visible focus everywhere, for real keyboard operability. */
+  :focus-visible {
+    outline: 2px solid var(--c-amber0);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--c-amber0);
+    color: var(--c-void);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* The resume page is a document, not a game screen. */
+@media print {
+  .fixed {
+    display: none !important;
+  }
+}

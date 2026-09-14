@@ -1,0 +1,66 @@
+# Builds the game and publishes it to GitHub Pages every time you push to main.
+#
+# ONE-TIME SETUP (takes 30 seconds, do it after your first push):
+#   1. Go to your repo on github.com
+#   2. Settings → Pages
+#   3. Under "Build and deployment", set Source to "GitHub Actions"
+#   4. Done. Push anything and your site updates by itself.
+#
+# OPTIONAL — to make the contact form send real emails:
+#   Settings → Secrets and variables → Actions → New repository secret
+#   Name:  VITE_WEB3FORMS_KEY
+#   Value: your free key from https://web3forms.com
+#   (Without it the form still works — it opens the visitor's email app instead.)
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check the content files are valid
+        run: npm run check:content
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_WEB3FORMS_KEY: ${{ secrets.VITE_WEB3FORMS_KEY }}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
