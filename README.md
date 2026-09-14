@@ -228,17 +228,6 @@ Those tests found four real bugs before anyone else saw them.
 
 ---
 
-## Contact
-
-I'm looking for L2/L3 production support, SRE, or AI engineering work.
-Open to relocate.
-
-- **Email:** [abrsjd5@gmail.com](mailto:abrsjd5@gmail.com)
-- **GitHub:** [github.com/abeer-sajid](https://github.com/abeer-sajid)
-- **Resume:** [read it here](https://abeer-sajid.github.io/recruiter-simulator/resume/)
-
----
-
 ## License
 
 The **code** is MIT licensed — see [LICENSE](./LICENSE). Take the engine, the
